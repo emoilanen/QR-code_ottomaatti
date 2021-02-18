@@ -2,12 +2,25 @@ import { Provider as PaperProvider, BottomNavigation, Text } from 'react-native-
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { WebView } from 'react-native-webview';
 import React, { useState } from 'react';
-import { StyleSheet, Button, View, SafeAreaView, Alert } from 'react-native';
+import { StyleSheet, Button, View, SafeAreaView, Alert, CameraRoll } from 'react-native';
+import { Camera } from 'expo-camera';
+
 
 
 function Qr_code() {
 
     const [url, setUrl] = useState("https://expo.io");
+    const [hasPermission, setHasPermission] = useState(null);
+
+    const useScanner = async () => {
+
+        const {status} = await Camera.requestPermissionsAsync();
+
+        if(status === 'granted'){
+            console.log("LUPA MYÖNNETTY");
+        }
+    }
+
 
 
     return (
@@ -19,7 +32,7 @@ function Qr_code() {
             <View style={styles.button}>
                 <Button
                     title="Skannaa QR-koodi"
-                    onPress={() => { }}
+                    onPress={useScanner}
                     color="pink"
                 />
             </View>
