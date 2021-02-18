@@ -12,7 +12,7 @@ import NavBottom from './components/NavBottom'
 export default function App() {
   return (
     <PaperProvider >
-      
+     
      
       <NavBottom />
     </PaperProvider>

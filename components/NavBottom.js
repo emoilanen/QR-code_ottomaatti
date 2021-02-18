@@ -1,12 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { BottomNavigation, Text } from 'react-native-paper';
 import { StyleSheet, View } from 'react-native';
-
-
-const qrRoute = () => <Text>qr</Text>;
-
-const ottomaattiRoute = () => <Text>ottomaatti</Text>;
-
+import Ottomaattihaku from './/Ottomaattihaku';
+import Qr_code from './Qr_code';
 
 
 
@@ -20,27 +16,37 @@ const NavBottom = () => {
     { key: 'ottomaatti', title: 'Ottomaatti', icon: 'account-cash' },
   ]);
 
-  const renderScene = BottomNavigation.SceneMap({
-    qr: qrRoute,
-    ottomaatti: ottomaattiRoute,
-  });
+
+  const renderScene = ({ route, jumpTo }) => {
+    switch (route.key) {
+      case 'qr':
+        return <Qr_code jumpTo={jumpTo} />;
+      case 'ottomaatti':
+        return <Ottomaattihaku jumpTo={jumpTo} />;
+    }
+  }
 
 
 
   return (
-    <BottomNavigation
-      navigationState={{ index, routes }}
-      onIndexChange={setIndex}
-      renderScene={renderScene}    
-    />
+    
+      <BottomNavigation
+        navigationState={{ index, routes }}
+        onIndexChange={setIndex}
+        renderScene={renderScene}
+        activeColor="green"
+        inactiveColor="white"
+      />
+   
   );
 };
 
 const styles = StyleSheet.create({
-    
-    navigation: {
-        backgroundColor: 'pink',
-    }
-  });
+
+  navigation: {
+    backgroundColor: 'pink',
+    paddingTop: 50
+  }
+});
 
 export default NavBottom;
