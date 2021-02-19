@@ -39,6 +39,11 @@ function Qr_code() {
         setUrl(data);
         setUseScannerPermission(false);
         setScanned(false);
+    } else {
+        setScanned(true);
+        setUrl("https://"+data);
+        setUseScannerPermission(false);
+        setScanned(false);
     }
     }
 
