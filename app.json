@@ -3,7 +3,7 @@
     "name": "QR-code_ottomaatti",
     "slug": "QR-code_ottomaatti",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
