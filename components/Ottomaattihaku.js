@@ -1,8 +1,7 @@
 import { View } from "react-native";
-import { Provider as PaperProvider, BottomNavigation, Text } from 'react-native-paper';
-import { WebView } from 'react-native-webview';
+import { Provider as PaperProvider,  Text } from 'react-native-paper';
 import React, { useState } from 'react';
-import { StyleSheet, Button, SafeAreaView, Alert } from 'react-native';
+import { StyleSheet, Button } from 'react-native';
 import * as Location from 'expo-location';
 import Automaatit from '../assets/automaatit'
 
@@ -50,7 +49,23 @@ function Ottomaattihaku() {
 
     const searchOttomaatti = (locationObject) => {
 
-        console.log("Automaatissa on", locationObject);
+        const degree_LAT_km = locationObject.koordinaatti_LAT / 360 * 40000;
+        const degree_LON_km = locationObject.koordinaatti_LON / 360 * 40000;;
+
+        const degree_LAT_km_ottomaatti = Automaatit[Automaatit.length-3].koordinaatti_LAT / 360 * 40000;
+        const degree_LON_km_ottomaatti = Automaatit[Automaatit.length-3].koordinaatti_LON / 360 * 40000;
+
+        const a_point = degree_LAT_km - degree_LAT_km_ottomaatti;
+        const b_point = degree_LON_km - degree_LON_km_ottomaatti;
+
+        const distancePoint = Math.sqrt((Math.pow(a_point,2)) + (Math.pow(b_point,2)));
+
+
+
+        console.log("Etäisyys",distancePoint, " Paikkakunta: ", Automaatit[Automaatit.length-3].postitoimipaikka);
+        console.log("Lat on km: ",degree_LAT_km," ja lon on km ", degree_LON_km);
+        console.log("OTTOMAATTI Lat on km: ",degree_LAT_km_ottomaatti," ja lon on km ", degree_LON_km_ottomaatti);
+
     }
 
 
